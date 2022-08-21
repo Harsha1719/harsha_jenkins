@@ -1,25 +1,19 @@
-modules:
-  nose:
-    ignore-unknown-actions: true
+---
 execution:
-- executor: selenium
-  scenario: Demo-test
-  blazegrid: true
-  iterations: 1
-  capabilities: 
-  browserName: chrome
+- concurrency: 50
+  hold-for: 3m
+  ramp-up: 2m
+
+  scenario: Choose Flight
 scenarios:
-  Demo-test:
-    generate-flow-markers: true 
-    headless: false
-    timeout: 10s
-    think-time: 0s
+  Choose Flight:
     requests:
-    - label: Test
-      actions:
-      - maximizeWindow()
-      - go(http://blazedemo.com/index.php)
-      - selectByName(fromPort): "Boston"
-      - selectByName(toPort): "Rome"
-      - clickByCSS(input.btn.btn-primary)
-      - assertTextByCSS(h3): "Flights from Boston to Rome:"
+    - label: blazedemo
+      method: GET
+      url: http://blazedemo.com/
+    - label: reserve
+      method: POST
+      url: http://blazedemo.com/reserve.php
+      body:
+        fromPort: Paris
+        toPort: Buenos Aires
