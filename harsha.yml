@@ -1,6 +1,4 @@
 ---
-
-harsha:
 execution:
 - concurrency: 50
   hold-for: 3m
