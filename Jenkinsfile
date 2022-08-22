@@ -21,7 +21,7 @@ pipeline {
         stage ('Build') {
 
             steps {
-            sh 'sudo docker build . -t sare273423/node_harsha:latest' 
+            sh 'sudo docker build . -t node_harsha:latest' 
             }
         }
 
@@ -35,7 +35,7 @@ pipeline {
         stage('Push') {
 
             steps {
-                sh 'sudo docker push node_harsha:latest'
+                sh 'sudo docker push sare273423/node_harsha:latest'
             }
         }        
     }
