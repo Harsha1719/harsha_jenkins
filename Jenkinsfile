@@ -21,7 +21,7 @@ pipeline {
         stage ('Build') {
 
             steps {
-            sh 'docker build -t Harsha1719/harsha_jenkins:latest .' 
+            sh 'docker build . -t Harsha1719/harsha_jenkins:latest' 
             }
         }
 
