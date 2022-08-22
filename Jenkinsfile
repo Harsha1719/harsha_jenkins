@@ -21,7 +21,7 @@ pipeline {
         stage ('Build') {
 
             steps {
-            sh 'docker build . -t node_harsha:latest' 
+            sh 'sudo docker build . -t node_harsha:latest' 
             }
         }
 
@@ -35,7 +35,7 @@ pipeline {
         stage('Push') {
 
             steps {
-                sh 'docker push Harsha1719/harsha_jenkins:latest'
+                sh 'sudo docker push node_harsha:latest'
             }
         }        
     }
