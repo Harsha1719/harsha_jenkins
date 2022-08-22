@@ -12,7 +12,8 @@ pipeline {
         stage('gitclone') {
 
             steps {
-                git 'https://github.com/Harsha1719/harsha_jenkins.git' 
+		git branch: 'main', url: 'https://github.com/Harsha1719/harsha_jenkins.git'
+              
                 
             }
         }
