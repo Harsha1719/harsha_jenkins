@@ -16,4 +16,4 @@ scenarios:
       url: http://blazedemo.com/reserve.php
       body:
         fromPort: Paris
-        toPort: Bueno
+        toPort: Bueno aries
