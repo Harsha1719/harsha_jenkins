@@ -1,47 +1,49 @@
 pipeline {
-    
-    agent any
-    
-	environment {
-		DOCKERHUB_CREDENTIALS=credentials('dockerhub-cred-harsha')
+
+  agent any
+
+  options {
+
+    buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')
+
+  }
+
+  stages {
+
+    stage('Hello') {
+
+      steps {
+
+        sh '''
+
+          java -version
+
+        '''
+
+      }
+
     }
 
-    stages {
+    stage('cat README') {
 
-        stage('gitclone') {
+      when {
 
-            steps {
-		git branch: 'main', url: 'https://github.com/Harsha1719/harsha_jenkins.git'
-              
-                
-            }
-        }
+        branch "fix-*"
 
-        stage ('Build') {
+      }
 
-            steps {
-            sh 'sudo docker build . -t node_harsha:latest' 
-            }
-        }
+      steps {
 
-        stage('login') {
+        sh '''
 
-            steps {
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-            }
-        }    
-     
-        stage('Push') {
+          cat README.md
 
-            steps {
-                sh 'sudo docker push sare273423/node_harsha:latest'
-            }
-        }        
+        '''
+
+      }
+
     }
 
-    post {  
-        always {
-            sh 'docker logout'
-        }
-    }
-}              
+  }
+
+}
